@@ -9,18 +9,18 @@ services:
     build:
       context: .
       dockerfile: ./compose/production/postgres/Dockerfile
-    image: django-base-pro_production_postgres
-    container_name: django-base-pro_local_postgres
+    image: django-boletin-rest_production_postgres
+    container_name: django-boletin-rest_local_postgres
     env_file:
       - ./.envs/.local/.postgres
     volumes:
-      - djangobasepro_postgres_data:/var/lib/postgresql/data
-      - djangobasepro_data_backups:/backups
+      - django-boletin-rest_postgres_data:/var/lib/postgresql/data
+      - django-boletin-rest_data_backups:/backups
     ports:
       - 5432:5432
 
 volumes:
-  djangobasepro_postgres_data:
-  djangobasepro_data_backups:
+  django-boletin-rest_postgres_data:
+  django-boletin-rest_data_backups:
 
 

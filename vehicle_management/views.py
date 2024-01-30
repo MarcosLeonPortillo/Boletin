@@ -1,7 +1,8 @@
 from django.contrib.auth.models import Group, User
 from rest_framework import permissions, viewsets
 
-from vehicle_management.serializers import GroupSerializer, UserSerializer
+from vehicle_management.models import Vehiculo, Marca
+from vehicle_management.serializers import GroupSerializer, UserSerializer, VehiculoSerializer, MarcaSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -19,4 +20,16 @@ class GroupViewSet(viewsets.ModelViewSet):
     """
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class VehiculoViewSet(viewsets.ModelViewSet):
+    queryset = Vehiculo.objects.all()
+    serializer_class = VehiculoSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class MarcaViewSet(viewsets.ModelViewSet):
+    queryset = Marca.objects.all()
+    serializer_class = MarcaSerializer
     permission_classes = [permissions.IsAuthenticated]

@@ -11,3 +11,4 @@ psycopg2-binary
 #production ready
 # psycopg2
 djangorestframework
+drf_spectacular

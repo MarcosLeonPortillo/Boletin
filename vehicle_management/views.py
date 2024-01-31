@@ -40,7 +40,7 @@ class MarcaViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['GET'])
     def lista_por_marca(self, request, pk):
-        marca = get_object_or_404(Marca, pk=1)
+        marca = get_object_or_404(Marca, pk=pk)
         vehiculos = Vehiculo.objects.filter(marca__nombre=marca.nombre)
         serializer = VehiculoSerializer(vehiculos, many=True, context={'request': self.request})
         response = Response(serializer.data)

@@ -1,6 +1,7 @@
 from django.contrib.auth.models import Group, User
 from rest_framework import permissions, viewsets, generics
 from rest_framework.decorators import action
+from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 
 from vehicle_management.models import Vehiculo, Marca
@@ -30,22 +31,16 @@ class VehiculoViewSet(viewsets.ModelViewSet):
     serializer_class = VehiculoSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-    @action(detail=False, methods=['GET'])
-    def lista_por_marca(self, request):
-        marca = Marca.objects.all().first()
-        vehiculos = self.queryset.filter(marca__nombre=marca.nombre)
-        #serializer = self.get_serializer(data=vehiculos, many=True)
-        serializer = self.serializer_class(vehiculos, many=True, context={'request': self.request})
-        response = Response(serializer.data)
-        #if serializer.is_valid():
-        #    response = Response(serializer.validated_data)
-        #else:
-        #    print(serializer.errors)
-        #    response = Response({"No tira": "unclucky"})
-        return response
-
 
 class MarcaViewSet(viewsets.ModelViewSet):
     queryset = Marca.objects.all()
     serializer_class = MarcaSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+    @action(detail=True, methods=['GET'])
+    def lista_por_marca(self, request, pk):
+        marca = get_object_or_404(Marca, pk=1)
+        vehiculos = Vehiculo.objects.filter(marca__nombre=marca.nombre)
+        serializer = VehiculoSerializer(vehiculos, many=True, context={'request': self.request})
+        response = Response(serializer.data)
+        return response

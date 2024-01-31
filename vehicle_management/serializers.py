@@ -17,13 +17,14 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class VehiculoSerializer(serializers.HyperlinkedModelSerializer):
+
     class Meta:
         model = Vehiculo
-        fields = ['tipo', 'chasis', 'marca', 'modelo', 'matricula', 'color', 'fecha_fabricacion', 'fecha_matriculacion',
+        fields = ['url', 'tipo', 'chasis', 'marca', 'modelo', 'matricula', 'color', 'fecha_fabricacion', 'fecha_matriculacion',
                   'fecha_baja', 'suspendido']
 
 
 class MarcaSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Marca
-        fields = ["nombre"]
+        fields = ['url', 'nombre']

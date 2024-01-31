@@ -7,6 +7,7 @@ class Marca(models.Model):
     class Meta:
         verbose_name_plural = "Marcas"
 
+
 '''
 Tipo vehículo (Coche, Ciclomotor o Motocicleta). 
 Chasis. Número identificativo único del Vehículo.
@@ -19,12 +20,14 @@ Fecha Matriculación. Fecha de alta de la matrícula.
 Fecha de Baja. Fecha de baja de la matrícula
 Suspendido. Flag 
 '''
+
+
 # Create your models here.
 class Vehiculo(models.Model):
     TIPO_VEHICULOS_CHOICES = (
         ("COCH", 'Coche'),
         ("CICL", 'Ciclomotor'),
-        ("MOTO", 'Motocicleta    '),
+        ("MOTO", 'Motocicleta'),
     )
     COLORES_CHOICES = (
         ("ROJO", 'Rojo'),

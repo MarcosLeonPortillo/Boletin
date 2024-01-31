@@ -1,9 +1,11 @@
 from django.contrib.auth.models import Group, User
-from rest_framework import permissions, viewsets, generics
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import permissions, viewsets, filters
 from rest_framework.decorators import action
 from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 
+from vehicle_management.filters import VehiculoFilter
 from vehicle_management.models import Vehiculo, Marca
 from vehicle_management.permissions import VehiculoPermission
 from vehicle_management.serializers import GroupSerializer, UserSerializer, VehiculoSerializer, MarcaSerializer
@@ -31,12 +33,19 @@ class VehiculoViewSet(viewsets.ModelViewSet):
     queryset = Vehiculo.objects.all()
     serializer_class = VehiculoSerializer
     permission_classes = [VehiculoPermission]
+    filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
+    # filterset_fields = ['modelo', 'color', 'marca__nombre']  # El contains no tira no se por que
+    ordering_fields = ['fecha_fabricacion']
+    ordering = ['fecha_fabricacion']  # Default ordering
+    filterset_class = VehiculoFilter
 
 
 class MarcaViewSet(viewsets.ModelViewSet):
     queryset = Marca.objects.all()
     serializer_class = MarcaSerializer
     permission_classes = [permissions.IsAuthenticated]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['nombre']
 
     @action(detail=True, methods=['GET'])
     def lista_por_marca(self, request, pk):

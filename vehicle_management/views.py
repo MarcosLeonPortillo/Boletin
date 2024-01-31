@@ -5,6 +5,7 @@ from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 
 from vehicle_management.models import Vehiculo, Marca
+from vehicle_management.permissions import VehiculoPermission
 from vehicle_management.serializers import GroupSerializer, UserSerializer, VehiculoSerializer, MarcaSerializer
 
 
@@ -29,7 +30,7 @@ class GroupViewSet(viewsets.ModelViewSet):
 class VehiculoViewSet(viewsets.ModelViewSet):
     queryset = Vehiculo.objects.all()
     serializer_class = VehiculoSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [VehiculoPermission]
 
 
 class MarcaViewSet(viewsets.ModelViewSet):

@@ -17,7 +17,7 @@ services:
       - django-boletin-rest_postgres_data:/var/lib/postgresql/data
       - django-boletin-rest_data_backups:/backups
     ports:
-      - 5432:5432
+      - 5434:5432
 
 volumes:
   django-boletin-rest_postgres_data:

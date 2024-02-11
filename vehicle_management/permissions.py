@@ -3,7 +3,7 @@ from rest_framework.permissions import BasePermission
 
 
 class VehiculoPermission(BasePermission):
-    message = "No puede pazá makina."
+    message = "No tienes permisos"
 
     def has_permission(self, request, view):
         if request.method in permissions.SAFE_METHODS:

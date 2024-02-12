@@ -1,7 +1,7 @@
 from django_filters import CharFilter
 from django_filters.rest_framework import FilterSet
 
-from vehicle_management.models import Vehiculo
+from .models import Vehiculo
 
 
 class VehiculoFilter(FilterSet):

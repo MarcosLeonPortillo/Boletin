@@ -1,11 +1,11 @@
 from django.urls import include, path
 from rest_framework import routers
 
-from vehicle_management import views
+from . import views
 
 router = routers.DefaultRouter()
-router.register(r'users', views.UserViewSet)
-router.register(r'groups', views.GroupViewSet)
+#router.register(r'users', views.UserViewSet)
+#router.register(r'groups', views.GroupViewSet)
 router.register(r'vehiculos', views.VehiculoViewSet)
 router.register(r'marcas', views.MarcaViewSet)
 

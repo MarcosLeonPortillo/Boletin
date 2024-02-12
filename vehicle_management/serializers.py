@@ -1,7 +1,7 @@
 from django.contrib.auth.models import Group, User
 from rest_framework import serializers
 
-from vehicle_management.models import Vehiculo, Marca
+from .models import Vehiculo, Marca
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
